@@ -1,0 +1,22 @@
+customWorldBorder:
+  enabled: true
+  overworld: 10000
+  nether: 7500
+  end: 20000
+netheriteUpgradeRecipe: true
+netheriteDupeRecipe:
+  enabled: true
+  useDiamondBlocks: false
+lightGoldenAppleCraft:
+  enabled: true
+  goldUsed: 4
+locatorBar:
+  overworld: false
+  nether: false
+  end: true
+enableNotchAppleCraft: false
+pvp: true
+enableEnd: true
+craftableCobwebs:
+  enabled: true
+  resultNumber: 1

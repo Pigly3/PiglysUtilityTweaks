@@ -1,0 +1,20 @@
+name: PiglysUtilityTweaks
+version: '1.0'
+main: dev.Pigly3.piglysUtilityTweaks.PiglysUtilityTweaks
+api-version: '1.21'
+commands:
+  pvp:
+    description: "Enable/disable PvP"
+    usage: "/pvp <bool>"
+    aliases: [pvp]
+    permission: putils.operator
+    permission-message: "You do not have permission to use this command"
+  endAccess:
+    description: "Enable/disable end access"
+    usage: "/endAccess <bool>"
+    aliases: [ endAccess, end ]
+    permission: putils.operator
+    permission-message: "You do not have permission to use this command"
+permissions:
+  putils.operator:
+    default: op
