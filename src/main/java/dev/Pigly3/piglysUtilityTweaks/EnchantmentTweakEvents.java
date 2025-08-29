@@ -57,14 +57,17 @@ public class EnchantmentTweakEvents implements Listener {
             if (event.getRecipe().getResult().getEnchantments().get(Enchantment.PROTECTION) > plugin.getConfig().getInt("enchantmentTweaks.prot.maxLevel")){
                 MerchantRecipe newRecipe = event.getRecipe();
                 newRecipe.getResult().getEnchantments().put(Enchantment.PROTECTION, plugin.getConfig().getInt("enchantmentTweaks.prot.maxLevel"));
+                event.setRecipe(newRecipe);
             }
             if (event.getRecipe().getResult().getEnchantments().get(Enchantment.SHARPNESS) > plugin.getConfig().getInt("enchantmentTweaks.sharp.maxLevel")){
                 MerchantRecipe newRecipe = event.getRecipe();
                 newRecipe.getResult().getEnchantments().put(Enchantment.SHARPNESS, plugin.getConfig().getInt("enchantmentTweaks.sharp.maxLevel"));
+                event.setRecipe(newRecipe);
             }
             if (event.getRecipe().getResult().getEnchantments().get(Enchantment.POWER) > plugin.getConfig().getInt("enchantmentTweaks.power.maxLevel")){
                 MerchantRecipe newRecipe = event.getRecipe();
                 newRecipe.getResult().getEnchantments().put(Enchantment.POWER, plugin.getConfig().getInt("enchantmentTweaks.power.maxLevel"));
+                event.setRecipe(newRecipe);
             }
         }
     }

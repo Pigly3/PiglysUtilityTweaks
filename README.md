@@ -10,6 +10,7 @@ A plugin to provide customization to SMP servers, with configurable tweaks.
     end: 20000
 This allows admins to set a different world border for each dimension.
 ### Netherite
+    lootBoost: true
     netheriteUpgradeRecipe: true
     netheriteDupeRecipe:
         enabled: true
@@ -23,10 +24,6 @@ This is useful for servers with short world borders.
 
 ###### *Netherite upgrade recipe*
 ![Recipe in crafting grid](https://img-devpigly.replit.app/netheriteupgrade.png)
-
-### Netherite Loot Boost
-    netheriteLootBoost: true
-Increases the amount of loot in bastion chests.
 
 ### Golden Apples
     lightGoldenAppleCraft:
@@ -117,4 +114,4 @@ Creates crafting recipes for items that are cut off without end access.
         power:
             enabled: true
             maxLevel: 4
-Allows setting max levels for enchantments,
+Allows setting max levels for enchantments.
