@@ -1,5 +1,5 @@
 name: PiglysUtilityTweaks
-version: '1.0'
+version: '1.3'
 main: dev.Pigly3.piglysUtilityTweaks.PiglysUtilityTweaks
 api-version: '1.21'
 commands:

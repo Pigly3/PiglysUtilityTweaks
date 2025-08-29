@@ -24,6 +24,10 @@ This is useful for servers with short world borders.
 ###### *Netherite upgrade recipe*
 ![Recipe in crafting grid](https://img-devpigly.replit.app/netheriteupgrade.png)
 
+### Netherite Loot Boost
+    netheriteLootBoost: true
+Increases the amount of loot in bastion chests.
+
 ### Golden Apples
     lightGoldenAppleCraft:
         enabled: true
@@ -60,3 +64,57 @@ This allows a crafting recipe for cobwebs, and allowing the number of cobwebs cr
 
 ###### *Cobweb recipe with resultNumber: 1*
 ![Recipe in crafting grid](https://img-devpigly.replit.app/cobweb.png)
+
+### Dimension-Based Difficulty
+    difficulty: #PEACEFUL, EASY, NORMAL, HARD
+        overworld: HARD
+        nether: HARD
+        end: HARD
+This must be in all caps to be parsed correctly by Paper's difficulty API.
+
+### Sleep Percentage
+    sleepPercentage: 100
+This just sets the sleepPercentage game rule. It is here to make resetting worlds easier.
+
+### Anvil Tweaks
+    anvilTweaks:
+        enable: true
+        disableTooExpensive: true
+        decreaseCost: true
+If ```enable: false``` is set, then neither of the other settings in this category will apply.
+
+```decreaseCost: true``` halves the cost of enchantments.
+
+### End Replacements
+    endReplacements:
+        elytraCraftingRecipe: true
+        endStoneRecipe: true
+        chorusFlowerRecipe: true
+        spireTrimRecipe: true
+Creates crafting recipes for items that are cut off without end access.
+
+###### *Elytra crafting recipe*
+![Recipe in crafting grid](https://img-devpigly.replit.app/elytra-recipe.png)
+
+###### *End stone crafting recipe, uses any type of cobblestone*
+![Recipe in crafting grid](https://img-devpigly.replit.app/end-stone-craft.png)
+
+###### *Chorus flower recipe*
+![Recipe in crafting grid](https://img-devpigly.replit.app/chorus-flower-recipe.png)
+
+###### *Spire trim recipe*
+![Recipe in crafting grid](https://img-devpigly.replit.app/spire.png)
+
+### Enchantment Tweaks
+    enchantmentTweaks:
+        enabled: true
+        prot:
+            enabled: true
+            maxLevel: 3
+        sharp:
+            enabled: true
+            maxLevel: 4
+        power:
+            enabled: true
+            maxLevel: 4
+Allows setting max levels for enchantments,

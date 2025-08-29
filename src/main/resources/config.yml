@@ -3,10 +3,6 @@ customWorldBorder:
   overworld: 10000
   nether: 7500
   end: 20000
-netheriteUpgradeRecipe: true
-netheriteDupeRecipe:
-  enabled: true
-  useDiamondBlocks: false
 lightGoldenAppleCraft:
   enabled: true
   goldUsed: 4
@@ -20,3 +16,36 @@ enableEnd: true
 craftableCobwebs:
   enabled: true
   resultNumber: 1
+allowEndCrystals: false
+difficulty: #PEACEFUL, EASY, NORMAL, HARD
+  overworld: HARD
+  nether: HARD
+  end: HARD
+sleepPercentage: 100
+anvilTweaks:
+  enable: true
+  disableTooExpensive: true
+  decreaseCost: true
+endReplacements:
+  elytraCraftingRecipe: false
+  endStoneRecipe: false
+  chorusFlowerRecipe: false
+  spireTrimRecipe: false
+netherite:
+  lootBoost: true
+  upgradeRecipe: true
+  dupeRecipe:
+    enabled: false
+    useDiamondBlocks: false
+  disableArmor: false
+enchantmentTweaks:
+  enabled: false
+  prot:
+    enabled: true
+    maxLevel: 3
+  sharp:
+    enabled: true
+    maxLevel: 4
+  power:
+    enabled: true
+    maxLevel: 4
