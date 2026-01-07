@@ -8,18 +8,17 @@ import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public final class PiglysUtilityTweaks extends JavaPlugin {
+    File file;
+    NamespacedKey maceKey = NamespacedKey.minecraft("mace");
     @Override
     public void onEnable() {
         // Plugin startup logic
         saveDefaultConfig();
-        final PVPCommand PvPCommandInstance = new PVPCommand(this);
-        final EndCommand EndCommandInstance = new EndCommand(this);
-        this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
-            commands.registrar().register("pvp", PvPCommandInstance);
-            commands.registrar().register("endAccess", EndCommandInstance);
-        });
-        getServer().getPluginManager().registerEvents(new PVPListener(this), this);
+        saveResource("data.yml", false);
+        file = new File(this.getDataFolder(), "data.yml");
         if (getConfig().getBoolean("customWorldBorder.enabled")){
             if (Bukkit.getWorld("world_nether") != null) {
                 Bukkit.getWorld("world_nether").getWorldBorder().setSize(getConfig().getDouble("customWorldBorder.nether"));
@@ -146,6 +145,18 @@ public final class PiglysUtilityTweaks extends JavaPlugin {
         if (getConfig().getBoolean("enchantmentTweaks.enabled")){
             getServer().getPluginManager().registerEvents(new EnchantmentTweakEvents(this), this);
         }
+        if (getConfig().getBoolean("maceLimit.enabled")){
+            Bukkit.getPluginManager().registerEvents(new MaceRelatedEvents(this), this);
+            YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
+            if (data.getInt("usedMaces") >= getConfig().getInt("maceLimit.count")) getServer().removeRecipe(maceKey);
+        }
+        if (getConfig().getBoolean("autoRestock")){
+            getServer().getPluginManager().registerEvents(new AutoRestockListeners(), this);
+        }
+        //PvP enabled/disabled
+        getServer().getWorld("world").setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.overworld"));
+        getServer().getWorld("world_nether").setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.nether"));
+        getServer().getWorld("world_the_end").setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.end"));
     }
     @Override
     public void onDisable() {

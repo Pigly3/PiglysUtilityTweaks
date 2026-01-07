@@ -3,6 +3,7 @@
 A plugin to provide customization to SMP servers, with configurable tweaks.
 
 ## Tweaks
+Configuration listed in this documentation is not guaranteed to be the default configuration/
 ### World Border
     enabled: true
     overworld: 10000
@@ -43,11 +44,11 @@ This allows admins to modify the golden apple recipe, and enable crafting of enc
         overworld: false
         nether: false
         end: true
-This allows changing locator bar status by dimension, also allowing a fix for a bug in Paper where locator bar works in the nether even when disabled by a game rule.
+This allows changing locator bar status by dimension, also allowing a fix for a bug in Paper where locator bar works in the Nether even when disabled by a game rule.
 
 ### Events
-    pvp: true
     enableEnd: true
+    pvp: true #Removed in 1.4.0
 These options are useful for events. PvP can be used for a grace period, and enableEnd can be used for an end fight.
 
 Unlike Vanilla, PvP & end access can be toggled at any time with a command.
@@ -115,3 +116,12 @@ Creates crafting recipes for items that are cut off without end access.
             enabled: true
             maxLevel: 4
 Allows setting max levels for enchantments.
+### PvP Settings byDimension
+    pvp:
+        overworld: true
+        nether: true
+        end: true
+These settings set the game rule for PvP by dimension, so you could do things like disabling PvP in the end.
+### Auto Restock
+    autoRestock: false
+Auto Restock makes villagers never run out of stock. By default, it is set to false for a more vanilla-like experience. 

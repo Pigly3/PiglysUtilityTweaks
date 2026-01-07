@@ -11,12 +11,15 @@ locatorBar:
   nether: false
   end: true
 enableNotchAppleCraft: false
-pvp: true
+pvp:
+  overworld: true
+  nether: true
+  end: true
 enableEnd: true
 craftableCobwebs:
   enabled: true
-  resultNumber: 1
-allowEndCrystals: false
+  resultNumber: 2
+allowEndCrystals: true
 difficulty: #PEACEFUL, EASY, NORMAL, HARD
   overworld: HARD
   nether: HARD
@@ -32,7 +35,7 @@ endReplacements:
   chorusFlowerRecipe: false
   spireTrimRecipe: false
 netherite:
-  lootBoost: true
+  lootBoost: false
   upgradeRecipe: true
   dupeRecipe:
     enabled: false
@@ -49,3 +52,7 @@ enchantmentTweaks:
   power:
     enabled: true
     maxLevel: 4
+maceLimit:
+  enabled: true
+  count: 2
+autoRestock: false

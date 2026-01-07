@@ -11,8 +11,14 @@ import java.util.List;
 public class LootGenerateListener implements Listener {
     @EventHandler
     public void onGenerateLoot(LootGenerateEvent event){
-        for (int i = 0; i < event.getLoot().toArray().length; i++){
-            List<ItemStack> loot = event.getLoot();
+        List<ItemStack> loot = event.getLoot();
+        if (event.isPlugin()){
+            return;
+        }
+        if (loot.isEmpty()){
+            return;
+        }
+        for (int i = 0; i < loot.toArray().length; i++){
             if (loot.get(i).getType() == Material.NETHERITE_INGOT){
                 ItemStack currStack = loot.get(i);
                 currStack.setAmount(currStack.getAmount() + 1);
@@ -23,7 +29,12 @@ public class LootGenerateListener implements Listener {
                 currStack.setAmount(currStack.getAmount() + 2);
                 loot.set(i, currStack);
             }
-            event.setLoot(loot);
+            if (loot.get(i).getType() == Material.ANCIENT_DEBRIS){
+                ItemStack currStack = loot.get(i);
+                currStack.setAmount(currStack.getAmount() + 2);
+                loot.set(i, currStack);
+            }
         }
+        event.setLoot(loot);
     }
 }
