@@ -21,10 +21,10 @@ This allows admins to control renewability of netherite and obtainability of net
 This is useful for servers with short world borders.
 
 ###### *Netherite dupe recipe*
-![Recipe in crafting grid](https://img-devpigly.replit.app/netheritedupe.png)
+![Recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/dbac65732c7312f25c0b1c84b893ea6f8459b1f7.png)
 
 ###### *Netherite upgrade recipe*
-![Recipe in crafting grid](https://img-devpigly.replit.app/netheriteupgrade.png)
+![Recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/9766469aa1120b587b8baaf9139ffb3a3569abee.png)
 
 ### Golden Apples
     lightGoldenAppleCraft:
@@ -34,10 +34,10 @@ This is useful for servers with short world borders.
 This allows admins to modify the golden apple recipe, and enable crafting of enchanted golden apples.
 
 ###### *A possible golden apple recipe*
-![Possible recipe in crafting grid](https://img-devpigly.replit.app/possiblegap.png)
+![Possible recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/6fa5ef4b5d605f2ba23f018ecde5b0d00c57a070.png)
 
 ###### *Enchanted golden apple recipe*
-![Recipe in crafting grid](https://img-devpigly.replit.app/notchapple.png)
+![Recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/fd48603cfc9e6ab2d8c2d3823b06014e88f4e323.png)
 
 ### Locator Bar
     locatorBar:
@@ -61,7 +61,7 @@ Unlike Vanilla, PvP & end access can be toggled at any time with a command.
 This allows a crafting recipe for cobwebs, and allowing the number of cobwebs crafted to be set.
 
 ###### *Cobweb recipe with resultNumber: 1*
-![Recipe in crafting grid](https://img-devpigly.replit.app/cobweb.png)
+![Recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/372360495b7a5344d72bf7317c57610a72e635c9.png)
 
 ### Dimension-Based Difficulty
     difficulty: #PEACEFUL, EASY, NORMAL, HARD
@@ -92,16 +92,16 @@ If ```enable: false``` is set, then neither of the other settings in this catego
 Creates crafting recipes for items that are cut off without end access.
 
 ###### *Elytra crafting recipe*
-![Recipe in crafting grid](https://img-devpigly.replit.app/elytra-recipe.png)
+![Recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/33db16da54fab0424cffad6e6b42fcfd9f367047.png)
 
 ###### *End stone crafting recipe, uses any type of cobblestone*
-![Recipe in crafting grid](https://img-devpigly.replit.app/end-stone-craft.png)
+![Recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/49a6f74372e939c7afbddd360b0f342a21ff01fb.png)
 
 ###### *Chorus flower recipe*
-![Recipe in crafting grid](https://img-devpigly.replit.app/chorus-flower-recipe.png)
+![Recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/130c8cf776d37dcc619df2d6f16ed7d761a3553f.png)
 
 ###### *Spire trim recipe*
-![Recipe in crafting grid](https://img-devpigly.replit.app/spire.png)
+![Recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/2f5a0d4cb83f1b99d88d1bca7fe69969f8381887.png)
 
 ### Enchantment Tweaks
     enchantmentTweaks:
