@@ -2,13 +2,18 @@ package dev.Pigly3.piglysUtilityTweaks;
 
 import com.destroystokyo.paper.MaterialTags;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
+import io.papermc.paper.potion.PotionMix;
 import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionType;
 
 import java.io.File;
+import java.util.Objects;
 
 public final class PiglysUtilityTweaks extends JavaPlugin {
     File file;
@@ -65,18 +70,18 @@ public final class PiglysUtilityTweaks extends JavaPlugin {
         }
         World overworld = Bukkit.getWorld("world");
         if (overworld != null) {
-            overworld.setGameRule(GameRule.LOCATOR_BAR, getConfig().getBoolean("locatorBar.overworld"));
+            overworld.setGameRule(GameRules.LOCATOR_BAR, getConfig().getBoolean("locatorBar.overworld"));
             overworld.setDifficulty(Difficulty.valueOf(getConfig().getString("difficulty.overworld")));
-            overworld.setGameRule(GameRule.PLAYERS_SLEEPING_PERCENTAGE, getConfig().getInt("sleepPercentage"));
+            overworld.setGameRule(GameRules.PLAYERS_SLEEPING_PERCENTAGE, getConfig().getInt("sleepPercentage"));
         }
         World nether = Bukkit.getWorld("world_nether");
         if (nether != null){
-            nether.setGameRule(GameRule.LOCATOR_BAR, getConfig().getBoolean("locatorBar.nether"));
+            nether.setGameRule(GameRules.LOCATOR_BAR, getConfig().getBoolean("locatorBar.nether"));
             nether.setDifficulty(Difficulty.valueOf(getConfig().getString("difficulty.nether")));
         }
         World end = Bukkit.getWorld("world_the_end");
         if (end != null) {
-            end.setGameRule(GameRule.LOCATOR_BAR, getConfig().getBoolean("locatorBar.end"));
+            end.setGameRule(GameRules.LOCATOR_BAR, getConfig().getBoolean("locatorBar.end"));
             end.setDifficulty(Difficulty.valueOf(getConfig().getString("difficulty.end")));
         }
         if (getConfig().getBoolean("enableNotchAppleCraft")){
@@ -153,10 +158,67 @@ public final class PiglysUtilityTweaks extends JavaPlugin {
         if (getConfig().getBoolean("autoRestock")){
             getServer().getPluginManager().registerEvents(new AutoRestockListeners(), this);
         }
+        if (getConfig().getBoolean("turtleTweaks.cheaperTurtleMaster")){
+            Recipe recipe = getServer().getRecipe(NamespacedKey.minecraft(""));
+
+            ItemStack result = new ItemStack(Material.POTION);
+            PotionMeta itemMeta = (PotionMeta) result.getItemMeta();
+            itemMeta.setBasePotionType(PotionType.TURTLE_MASTER);
+            result.setItemMeta(itemMeta);
+
+            ItemStack resultSplash = new ItemStack(Material.SPLASH_POTION);
+            PotionMeta itemMetaSplash = (PotionMeta) resultSplash.getItemMeta();
+            itemMetaSplash.setBasePotionType(PotionType.TURTLE_MASTER);
+            resultSplash.setItemMeta(itemMetaSplash);
+
+            ItemStack resultLingering = new ItemStack(Material.LINGERING_POTION);
+            PotionMeta itemMetaLingering = (PotionMeta) resultLingering.getItemMeta();
+            itemMetaLingering.setBasePotionType(PotionType.TURTLE_MASTER);
+            resultLingering.setItemMeta(itemMetaLingering);
+
+            RecipeChoice awkwardPotion = PotionMix.createPredicateChoice(item -> {
+                if (item.getType() != Material.POTION) return false;
+                if (item.getItemMeta() != null && item.getItemMeta() instanceof PotionMeta meta){
+                    return meta.getBasePotionType() == PotionType.AWKWARD ;
+                }
+                return false;
+            });
+            RecipeChoice splashAwkward = PotionMix.createPredicateChoice(item -> {
+                if (item.getType() != Material.SPLASH_POTION) return false;
+                if (item.getItemMeta() != null && item.getItemMeta() instanceof PotionMeta meta){
+                    return meta.getBasePotionType() == PotionType.AWKWARD ;
+                }
+                return false;
+            });
+            RecipeChoice lingeringAwkward = PotionMix.createPredicateChoice(item -> {
+                if (item.getType() != Material.LINGERING_POTION) return false;
+                if (item.getItemMeta() != null && item.getItemMeta() instanceof PotionMeta meta){
+                    return meta.getBasePotionType() == PotionType.AWKWARD ;
+                }
+                return false;
+            });
+
+            RecipeChoice scute = PotionMix.createPredicateChoice(item -> {
+                return item.getType() == Material.TURTLE_SCUTE;
+            });
+
+            PotionMix mix = new PotionMix(new NamespacedKey(this, "turtle_master"), result, awkwardPotion, scute);
+            PotionMix splashMix = new PotionMix(new NamespacedKey(this, "turtle_master_splash"), resultSplash, splashAwkward, scute);
+            PotionMix lingeringMix = new PotionMix(new NamespacedKey(this, "turtle_master_lingering"), resultLingering, lingeringAwkward, scute);
+
+            getServer().getPotionBrewer().addPotionMix(mix);
+            getServer().getPotionBrewer().addPotionMix(splashMix);
+            getServer().getPotionBrewer().addPotionMix(lingeringMix);
+        }
+
+        if (getConfig().getBoolean("turtleTweaks.dropScutes")){
+            getServer().getPluginManager().registerEvents(new TurtleDeathListener(this), this);
+        }
+
         //PvP enabled/disabled
-        getServer().getWorld("world").setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.overworld"));
-        getServer().getWorld("world_nether").setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.nether"));
-        getServer().getWorld("world_the_end").setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.end"));
+        Objects.requireNonNull(getServer().getWorld("world")).setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.overworld"));
+        Objects.requireNonNull(getServer().getWorld("world_nether")).setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.nether"));
+        Objects.requireNonNull(getServer().getWorld("world_the_end")).setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.end"));
     }
     @Override
     public void onDisable() {

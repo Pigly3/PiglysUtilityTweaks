@@ -12,7 +12,7 @@ public class PrepareAnvilListener implements Listener {
     }
     @EventHandler
     public void onAnvilPrepare(PrepareAnvilEvent event){
-        if (plugin.getConfig().getBoolean("anvilTweaks.decreaseCost")) event.getView().setRepairCost(event.getView().getRepairCost() / 2);
-        if (plugin.getConfig().getBoolean("anvilTweaks.disableTooExpensive")) event.getView().setMaximumRepairCost(event.getView().getMaximumRepairCost());
+        event.getView().setRepairCost((int) (event.getView().getRepairCost() * plugin.getConfig().getDouble("anvilTweaks.costFactor")));
+        if (plugin.getConfig().getBoolean("anvilTweaks.disableTooExpensive")) event.getView().setMaximumRepairCost(event.getView().getRepairCost()+20);
     }
 }

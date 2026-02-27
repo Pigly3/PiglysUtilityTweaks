@@ -4,6 +4,7 @@ import io.papermc.paper.event.entity.EntityDamageItemEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
@@ -12,9 +13,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.ItemDespawnEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MaceRelatedEvents implements Listener {
     public PiglysUtilityTweaks plugin;
@@ -24,7 +28,7 @@ public class MaceRelatedEvents implements Listener {
     @EventHandler(priority= EventPriority.MONITOR)
     public void craftItemListener(CraftItemEvent event) {
         YamlConfiguration data = YamlConfiguration.loadConfiguration(plugin.file);
-        if (event.getInventory().getResult() != null && event.getCurrentItem().getType() == Material.MACE){
+        if (event.getInventory().getResult() != null && Objects.requireNonNull(event.getCurrentItem()).getType() == Material.MACE){
             if (data.getInt("usedMaces") + 1 >= plugin.getConfig().getInt("maceLimit.count")) Bukkit.getServer().removeRecipe(plugin.maceKey);
             data.set("usedMaces", data.getInt("usedMaces") + 1);
             Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
@@ -57,6 +61,17 @@ public class MaceRelatedEvents implements Listener {
         if (event.getEntityType() == EntityType.ITEM){
             Item item = (Item) event.getEntity();
             if (item.getItemStack().getType() == Material.MACE) removeMace();
+        }
+    }
+    @EventHandler(priority=EventPriority.MONITOR)
+    public void onPlayerDeath(PlayerDeathEvent event){
+        if (event.isCancelled()) return;
+        for (ItemStack item : event.getPlayer().getInventory().getContents()) {
+            if (item != null) {
+                if (item.getType() == Material.MACE && item.getEnchantments().get(Enchantment.VANISHING_CURSE) == 1) {
+                    removeMace();
+                }
+            }
         }
     }
 }

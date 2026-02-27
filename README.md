@@ -1,4 +1,5 @@
 # Pigly's Utility Tweaks
+<a href="https://modrinth.com/plugin/piglys-utility-tweaks"><img src="https://img.shields.io/badge/dynamic/json?color=158000&label=downloads&prefix=+%20&query=downloads&url=https://api.modrinth.com/v2/project/MbJbgd17&logo=modrinth" alt="Modrinth Downloads"></a>
 
 A plugin to provide customization to SMP servers, with configurable tweaks.
 
@@ -78,10 +79,13 @@ This just sets the sleepPercentage game rule. It is here to make resetting world
     anvilTweaks:
         enable: true
         disableTooExpensive: true
-        decreaseCost: true
+        costFactor: 1
 If ```enable: false``` is set, then neither of the other settings in this category will apply.
 
-```decreaseCost: true``` halves the cost of enchantments.
+If ```disableTooExpensive: true``` is set, anvil cost will not be capped, so no repairs will be too expensive.
+
+```costFactor: 1``` scales the cost of enchantments according to the factor. The factor will accept any `double` value.
+``````
 
 ### End Replacements
     endReplacements:

@@ -28,7 +28,7 @@ sleepPercentage: 100
 anvilTweaks:
   enable: true
   disableTooExpensive: true
-  decreaseCost: true
+  costFactor: 1
 endReplacements:
   elytraCraftingRecipe: false
   endStoneRecipe: false
@@ -56,3 +56,7 @@ maceLimit:
   enabled: true
   count: 2
 autoRestock: false
+turtleTweaks:
+  cheaperTurtleMaster: true
+  dropScutes: false
+  scuteChance: 35
