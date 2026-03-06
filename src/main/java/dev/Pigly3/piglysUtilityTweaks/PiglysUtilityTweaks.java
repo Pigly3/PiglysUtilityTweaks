@@ -70,16 +70,19 @@ public final class PiglysUtilityTweaks extends JavaPlugin {
             overworld.setGameRule(GameRules.LOCATOR_BAR, getConfig().getBoolean("locatorBar.overworld"));
             overworld.setDifficulty(Difficulty.valueOf(getConfig().getString("difficulty.overworld")));
             overworld.setGameRule(GameRules.PLAYERS_SLEEPING_PERCENTAGE, getConfig().getInt("sleepPercentage"));
+            overworld.setGameRule(GameRules.ELYTRA_MOVEMENT_CHECK, !getConfig().getBoolean("disableElytraMovementCheck"));
         }
         World nether = Bukkit.getWorld("world_nether");
         if (nether != null){
             nether.setGameRule(GameRules.LOCATOR_BAR, getConfig().getBoolean("locatorBar.nether"));
             nether.setDifficulty(Difficulty.valueOf(getConfig().getString("difficulty.nether")));
+            nether.setGameRule(GameRules.ELYTRA_MOVEMENT_CHECK, !getConfig().getBoolean("disableElytraMovementCheck"));
         }
         World end = Bukkit.getWorld("world_the_end");
         if (end != null) {
             end.setGameRule(GameRules.LOCATOR_BAR, getConfig().getBoolean("locatorBar.end"));
             end.setDifficulty(Difficulty.valueOf(getConfig().getString("difficulty.end")));
+            end.setGameRule(GameRules.ELYTRA_MOVEMENT_CHECK, !getConfig().getBoolean("disableElytraMovementCheck"));
         }
         if (getConfig().getBoolean("enableNotchAppleCraft")){
             NamespacedKey key = new NamespacedKey(this, "NotchApple");
@@ -213,11 +216,6 @@ public final class PiglysUtilityTweaks extends JavaPlugin {
         }
         if (getConfig().getBoolean("speed.enabled")) {
             getServer().getPluginManager().registerEvents(new SpeedListeners(this), this);
-        }
-        if (getConfig().getBoolean("disableElytraMovementCheck")){
-            getServer().getWorld("world").setGameRule(GameRules.ELYTRA_MOVEMENT_CHECK, false);
-            getServer().getWorld("world_nether").setGameRule(GameRules.ELYTRA_MOVEMENT_CHECK, false);
-            getServer().getWorld("world_the_end").setGameRule(GameRules.ELYTRA_MOVEMENT_CHECK, false);
         }
         //PvP enabled/disabled
         Objects.requireNonNull(getServer().getWorld("world")).setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.overworld"));

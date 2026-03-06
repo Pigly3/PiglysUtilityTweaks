@@ -4,7 +4,7 @@
 A plugin to provide customization to SMP servers, with configurable tweaks.
 
 ## Tweaks
-Configuration listed in this documentation is not guaranteed to be the default configuration/
+Configuration listed in this documentation is **not guaranteed** to be the default configuration.
 ### World Border
     enabled: true
     overworld: 10000
