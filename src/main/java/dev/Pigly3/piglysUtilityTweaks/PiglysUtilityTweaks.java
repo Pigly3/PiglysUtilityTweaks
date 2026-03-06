@@ -1,13 +1,10 @@
 package dev.Pigly3.piglysUtilityTweaks;
 
 import com.destroystokyo.paper.MaterialTags;
-import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import io.papermc.paper.potion.PotionMix;
 import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionType;
@@ -147,8 +144,8 @@ public final class PiglysUtilityTweaks extends JavaPlugin {
         if (getConfig().getBoolean("netherite.disableArmor")){
             getServer().getPluginManager().registerEvents(new PrepareSmithingListener(), this);
         }
-        if (getConfig().getBoolean("enchantmentTweaks.enabled")){
-            getServer().getPluginManager().registerEvents(new EnchantmentTweakEvents(this), this);
+        if (getConfig().getBoolean("enchantmentMaxLevels.enabled")){
+            getServer().getPluginManager().registerEvents(new EnchantmentMaxLevelEvents(this), this);
         }
         if (getConfig().getBoolean("maceLimit.enabled")){
             Bukkit.getPluginManager().registerEvents(new MaceRelatedEvents(this), this);
@@ -214,7 +211,14 @@ public final class PiglysUtilityTweaks extends JavaPlugin {
         if (getConfig().getBoolean("turtleTweaks.dropScutes")){
             getServer().getPluginManager().registerEvents(new TurtleDeathListener(this), this);
         }
-
+        if (getConfig().getBoolean("speed.enabled")) {
+            getServer().getPluginManager().registerEvents(new SpeedListeners(this), this);
+        }
+        if (getConfig().getBoolean("disableElytraMovementCheck")){
+            getServer().getWorld("world").setGameRule(GameRules.ELYTRA_MOVEMENT_CHECK, false);
+            getServer().getWorld("world_nether").setGameRule(GameRules.ELYTRA_MOVEMENT_CHECK, false);
+            getServer().getWorld("world_the_end").setGameRule(GameRules.ELYTRA_MOVEMENT_CHECK, false);
+        }
         //PvP enabled/disabled
         Objects.requireNonNull(getServer().getWorld("world")).setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.overworld"));
         Objects.requireNonNull(getServer().getWorld("world_nether")).setGameRule(GameRules.PVP, getConfig().getBoolean("pvp.nether"));

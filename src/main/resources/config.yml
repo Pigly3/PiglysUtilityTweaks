@@ -41,17 +41,11 @@ netherite:
     enabled: false
     useDiamondBlocks: false
   disableArmor: false
-enchantmentTweaks:
+enchantmentMaxLevels:
   enabled: false
-  prot:
-    enabled: true
-    maxLevel: 3
-  sharp:
-    enabled: true
-    maxLevel: 4
-  power:
-    enabled: true
-    maxLevel: 4
+  protection: 3
+  sharpness: 4
+  power: 4
 maceLimit:
   enabled: true
   count: 2
@@ -60,3 +54,7 @@ turtleTweaks:
   cheaperTurtleMaster: true
   dropScutes: false
   scuteChance: 35
+speed:
+  enabled: false #determines if speed overrides will be applied
+  happyGhast: 0.1025
+disableElytraMovementCheck: true

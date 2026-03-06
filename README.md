@@ -85,7 +85,6 @@ If ```enable: false``` is set, then neither of the other settings in this catego
 If ```disableTooExpensive: true``` is set, anvil cost will not be capped, so no repairs will be too expensive.
 
 ```costFactor: 1``` scales the cost of enchantments according to the factor. The factor will accept any `double` value.
-``````
 
 ### End Replacements
     endReplacements:
@@ -107,20 +106,14 @@ Creates crafting recipes for items that are cut off without end access.
 ###### *Spire trim recipe*
 ![Recipe in crafting grid](https://cdn.modrinth.com/data/MbJbgd17/images/2f5a0d4cb83f1b99d88d1bca7fe69969f8381887.png)
 
-### Enchantment Tweaks
-    enchantmentTweaks:
-        enabled: true
-        prot:
-            enabled: true
-            maxLevel: 3
-        sharp:
-            enabled: true
-            maxLevel: 4
-        power:
-            enabled: true
-            maxLevel: 4
-Allows setting max levels for enchantments.
-### PvP Settings byDimension
+### Enchantment Max Levels
+    enchantmentMaxLevels:
+        enabled: false
+        protection: 3
+        sharpness: 4
+        power: 4
+Allows setting max levels for enchantments. You can set a max level for any enchantment, by simply making an entry with the enchantment name. You can also just remove the entry for an enchantment.
+### PvP Settings by Dimension
     pvp:
         overworld: true
         nether: true
@@ -129,3 +122,20 @@ These settings set the game rule for PvP by dimension, so you could do things li
 ### Auto Restock
     autoRestock: false
 Auto Restock makes villagers never run out of stock. By default, it is set to false for a more vanilla-like experience. 
+
+### Turtle Tweaks
+    turtleTweaks:
+        cheaperTurtleMaster: true
+        dropScutes: false
+        scuteChance: 35
+These tweaks were made to make it easier to obtain turtle master potions.
+
+### Speed Overrides
+    speed:
+        enabled: false #determines if speed overrides will be applied
+        happyGhast: 0.1025
+Many SMP players find happy ghasts to be too slow to be effective. This allows overriding happy ghast speed, and may allow changing other speeds in the future.
+
+### Elytra Movement Check
+    disableElytraMovementCheck: true
+This is helpful for servers that reset, because game rules get reset with the world. This setting helps prevent laggy elytra movement, although it disables an anti-cheat feature. This is only recommended for small SMPs. 
