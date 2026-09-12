@@ -5,7 +5,7 @@ customWorldBorder:
   end: 20000
 lightGoldenAppleCraft:
   enabled: true
-  goldUsed: 4
+  goldUsed:  4
 locatorBar:
   overworld: false
   nether: false
@@ -47,7 +47,7 @@ enchantmentMaxLevels:
   sharpness: 4
   power: 4
 maceLimit:
-  enabled: true
+  enabled: false
   count: 2
 autoRestock: false
 turtleTweaks:
@@ -56,5 +56,13 @@ turtleTweaks:
   scuteChance: 35
 speed:
   enabled: false #determines if speed overrides will be applied
-  happyGhast: 0.1025
+  happyGhast: 0.1125
+  nautilus: 1
+  zombieNautilus: 1.1
+speedMultipliers:
+  horse: 1
+  donkey: 1
+  mule: 1
+  zombieHorse: 1
+  skeletonHorse: 1
 disableElytraMovementCheck: true
